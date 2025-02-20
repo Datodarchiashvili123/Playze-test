@@ -56,7 +56,8 @@ jobs:
 
       - name: Unzip artifact for deployment
         run: unzip release.zip
-      
+
+
       - name: Login to Azure
         uses: azure/login@v2
         with:
@@ -76,4 +77,4 @@ jobs:
           app-name: 'Play'
           slot-name: 'Production'
           package: dist/play
-          
+
