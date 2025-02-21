@@ -26,6 +26,10 @@ export class HomeComponent implements OnInit {
     sliderData: any;
     newDeals = [];
     bestDeals = [];
+    newDealsFirstPart=[];
+    newDealsSecondPart = [];
+    bestDealsFirstPart=[];
+    bestDealsSecondPart = [];
 
     constructor(
         private homeService: HomeService,
@@ -57,10 +61,14 @@ export class HomeComponent implements OnInit {
 
         this.homeService.getDealCards(1).subscribe((x: any) => {
             this.newDeals = x.dealCards;
+             this.newDealsFirstPart = this.newDeals.slice(0, 5);  // Items from index 0 to 3
+             this.newDealsSecondPart = this.newDeals.slice(4, 9); // Items from index 4 to 8
         });
 
         this.homeService.getDealCards(2).subscribe((x: any) => {
             this.bestDeals = x.dealCards;
+            this.bestDealsFirstPart = this.bestDeals.slice(0, 5);
+            this.bestDealsSecondPart = this.bestDeals.slice(4, 9);
         });
     }
 

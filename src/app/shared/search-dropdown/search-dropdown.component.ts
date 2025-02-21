@@ -51,7 +51,6 @@ export class SearchDropdownComponent implements OnInit {
         private elementRef: ElementRef
     ) {
         this.isBrowser = isPlatformBrowser(this.platformId);
-
     }  // Inject the service
 
     ngOnInit() {

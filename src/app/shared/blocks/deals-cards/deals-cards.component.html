@@ -1,10 +1,8 @@
 <div class="deals">
     <h3 class="deals__title">{{ title }}</h3>
-    <!--  <div class="deals__see-all">See All (123)</div>-->
 </div>
 <div class="deals__cards">
     @if (dealsCards) {
-
         @for (card of dealsCards; track card) {
             <app-deals-card
                     routerLink="games/{{card.urlName}}"

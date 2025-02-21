@@ -19,13 +19,15 @@
         <app-item-slider [slides]="sliderData"/>
     }
     <div class="deals-container">
+        @if (bestDeals) {
+            <app-deals-cards [title]="'Best Deals'" [dealsCards]="bestDealsFirstPart" class="deals-box"/>
+            <app-deals-cards style="margin-top: 25px;" [title]="''" [dealsCards]="bestDealsSecondPart" class="deals-box"/>
+        }
         @if (newDeals) {
-            <app-deals-cards [title]="'New Deals'" [dealsCards]="newDeals" class="deals-box"/>
+            <app-deals-cards [title]="'New Deals'" [dealsCards]="newDealsFirstPart" class="deals-box"/>
+            <app-deals-cards style="margin-top: 25px;" [title]="''" [dealsCards]="newDealsSecondPart" class="deals-box"/>
         } @else {
 
-        }
-        @if (bestDeals) {
-            <app-deals-cards [title]="'Best Deals'" [dealsCards]="bestDeals" class="deals-box"/>
         }
     </div>
 </div>

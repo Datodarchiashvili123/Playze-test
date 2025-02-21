@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {NewsDetailsService} from "./news-details.service";
 import {ActivatedRoute, RouterLink} from "@angular/router";
 import {Subscription} from "rxjs";
@@ -15,7 +15,7 @@ import {NgOptimizedImage, NgStyle} from "@angular/common";
   templateUrl: './news-details.component.html',
   styleUrl: './news-details.component.scss'
 })
-export class NewsDetailsComponent implements OnInit {
+export class NewsDetailsComponent implements OnInit, OnDestroy {
   newsId: string | null = null;
   private routeSub: Subscription | undefined;
   news:any;
@@ -64,6 +64,12 @@ ngOnInit() {
       return `rgba(${r}, ${g}, ${b}, ${opacity})`;
     }
     return color; // Fallback for named colors or invalid input
+  }
+
+  ngOnDestroy() {
+    if (this.routeSub) {
+      this.routeSub.unsubscribe();
+    }
   }
 
 }

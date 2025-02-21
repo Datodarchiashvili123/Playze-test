@@ -1,4 +1,4 @@
-import {Component, OnInit,} from "@angular/core";
+import {Component, inject, Inject, OnDestroy, OnInit,} from "@angular/core";
 import {GameDetailsService} from "./game-details.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
@@ -7,6 +7,7 @@ import {SlickCarouselModule} from "ngx-slick-carousel";
 import {NgForOf, NgIf, NgOptimizedImage,} from "@angular/common";
 import {GameDetailCardComponent} from "../../shared/game-detail-card/game-detail-card.component";
 import {SimilarGamesComponent} from "../../shared/blocks/similar-games/similar-games.component";
+import {SeoService} from "../../services/seo.service";
 
 @Component({
     selector: "app-game-details",
@@ -22,7 +23,7 @@ import {SimilarGamesComponent} from "../../shared/blocks/similar-games/similar-g
     templateUrl: "./game-details.component.html",
     styleUrls: ["./game-details.component.scss"],
 })
-export class GameDetailsComponent implements OnInit {
+export class GameDetailsComponent implements OnInit, OnDestroy {
     mainSlideConfig = {
         slidesToShow: 1,
         slidesToScroll: 1,
@@ -128,7 +129,9 @@ export class GameDetailsComponent implements OnInit {
     sanitizedAboutTheGame: any;
     offers: any;
     similarGames: any;
-    // private routeSub: Subscription | undefined;
+    private routeSub: Subscription | undefined;
+
+    seoService = inject(SeoService)
 
     constructor(
         private route: ActivatedRoute,
@@ -141,13 +144,19 @@ export class GameDetailsComponent implements OnInit {
     }
 
     ngOnInit() {
-         this.route.params.subscribe((params) => {
+    this.routeSub = this.route.params.subscribe((params) => {
             this.gameId = params["id"];
             this.loadGameDetail(this.gameId);
             this.loadGalleryDetail(this.gameId);
             this.loadGameOffers(this.gameId);
             this.loadSimilarGames(this.gameId);
         });
+
+        // Canonical URL დამატება სერვერზე და ბრაუზერში
+        const canonicalUrl = `https://playze.io/${this.route.snapshot.url.join('/')}`;
+        console.log(canonicalUrl, ' url');
+        this.seoService.setCanonicalURL(canonicalUrl);
+
     }
 
     loadGameDetail(gameId: any) {
@@ -219,9 +228,9 @@ export class GameDetailsComponent implements OnInit {
         }
     }
 
-    // ngOnDestroy() {
-    //     if (this.routeSub) {
-    //         this.routeSub.unsubscribe();
-    //     }
-    // }
+    ngOnDestroy() {
+        if (this.routeSub) {
+            this.routeSub.unsubscribe();
+        }
+    }
 }
