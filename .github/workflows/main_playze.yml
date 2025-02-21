@@ -71,7 +71,7 @@ jobs:
         with:
           app-name: 'Playze-test'
           slot-name: 'Production'
-          package: dist/play
+          package: dist/playze-test
 
       - name: Set startup command
         run: az webapp config set --name Playze-test --resource-group Playze_group --startup-file "node dist/play/server/server.mjs"
