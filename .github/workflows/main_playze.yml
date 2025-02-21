@@ -76,3 +76,5 @@ jobs:
       - name: Set startup command
         run: az webapp config set --name Playze-test --resource-group Playze_group --startup-file "node server/server.mjs"
 
+
+
