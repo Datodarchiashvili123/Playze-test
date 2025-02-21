@@ -61,11 +61,6 @@ jobs:
       - name: Login to Azure
         uses: azure/login@v2
         with:
-          enable-AzPSSession: false
-          environment: azurecloud
-          allow-no-subscriptions: false
-          audience: api://AzureADTokenExchange
-          auth-type: SERVICE_PRINCIPAL
           client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_AABE95094EA14C4CBEC936E463385811 }}
           tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_8A507EADBC2649789C86ECEDAEDE3373 }}
           subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_AA726858B51E401FB4DC4D0A74DBEB84 }}
@@ -74,7 +69,7 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'Play'
+          app-name: 'Playze-test'
           slot-name: 'Production'
           package: dist/play
 
