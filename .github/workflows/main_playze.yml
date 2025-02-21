@@ -69,10 +69,10 @@ jobs:
         id: deploy-to-webapp
         uses: azure/webapps-deploy@v3
         with:
-          app-name: 'Playze-test'
+          app-name: 'Play'
           slot-name: 'Production'
           package: dist/play
 
       - name: Set startup command
-        run: az webapp config set --name Playze-test --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --startup-file "node dist/play/server/server.mjs"
+        run: az webapp config set --name Play --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --startup-file "node dist/play/server/server.mjs"
 
