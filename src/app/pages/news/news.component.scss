@@ -1,5 +1,92 @@
+@media screen and (max-width: 768px) and (min-width: 669px) {
+  .card {
+    &__info {
+      h2,
+      p,
+      .genres {
+        width: 400px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 668px) and (min-width: 0px) {
+  .card {
+    &__info {
+      h2,
+      p,
+      .genres {
+        width: 190px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    position: relative;
+    padding: 7px;
+    &__info {
+      h2,
+      p,
+      .genres {
+        -webkit-box-orient: horizontal;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        display: block;
+        overflow: hidden;
+      }
+      h2 {
+        margin: 0 0 4px 0;
+      }
+      p {
+        font-size: 12px;
+      }
+      .rel-date {
+        margin: 0;
+      }
+      .genres {
+        margin: 0 0 6px 0;
+      }
+    }
+    &__price {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      align-self: flex-end;
+      padding: 0 5px 5px 0;
+      color: #c9ff58;
+      &__button,
+      span {
+        display: none;
+      }
+      p {
+        font-size: 18px;
+      }
+    }
+  }
+  .card-image {
+    img {
+      width: 140px;
+      height: 75.5px;
+    }
+  }
+  app-soc-medias {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .card-image {
+    img {
+      width: 280px;
+      height: 160px;
+    }
+  }
+}
+
 .page__title {
-  color: #FFF;
+  color: #fff;
   font-family: Jura, sans-serif;
   font-size: 16px;
   font-style: normal;
@@ -9,7 +96,7 @@
   margin-block-end: 22px;
 }
 .page__description {
-  color: rgba(#FFF, 0.7);
+  color: rgba(#fff, 0.7);
   font-family: Jura, sans-serif;
   font-size: 12px;
   font-style: normal;
@@ -36,13 +123,14 @@ body {
 }
 
 .games-cards-container {
-  width: 1000px;
+  width: 100%;
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
 
   .card-container {
     display: flex;
-    width: 1000px;
+    max-width: 1000px;
     background-color: #1b1b1b;
     border-radius: 12px;
     cursor: pointer;
@@ -61,8 +149,8 @@ body {
       height: 100%;
 
       img {
-        width: 280px;
-        height: 160px;
+        // width: 280px;
+        // height: 160px;
         border-radius: 8px;
       }
     }
@@ -101,7 +189,7 @@ body {
           display: flex;
           justify-content: center;
           align-items: center;
-          text-transform: capitalize;	/* Transforms the first character of each word to uppercase */
+          text-transform: capitalize; /* Transforms the first character of each word to uppercase */
         }
 
         .card-icons {
@@ -250,7 +338,6 @@ body {
     }
   }
 }
-
 
 .multi-line-fixed-height {
   line-height: 20px; /* Set line height */
