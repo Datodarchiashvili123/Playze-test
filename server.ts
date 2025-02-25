@@ -19,7 +19,7 @@ export function app(): express.Express {
 
     // Serve static files first
     server.get('*.*', express.static(browserDistFolder, {
-        maxAge: '1y'
+        maxAge: '0'
     }));
 
     // Serve the Google verification HTML file
