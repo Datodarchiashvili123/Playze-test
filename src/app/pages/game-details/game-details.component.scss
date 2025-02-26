@@ -36,34 +36,43 @@
   .game-img-des-container {
     gap: 12px;
     margin: 18px auto 12px auto;
+
     .short-description {
       text-align: center;
+
       &__container {
         flex-direction: column;
         flex-wrap: wrap;
         margin: auto;
+
         &__text {
           display: none;
         }
+
         &__img {
           margin: auto;
         }
       }
     }
+
     .shop-now {
       padding: 15px;
       max-width: 358px;
       width: 100%;
+
       &__title {
         color: white;
         font-size: 18px;
         margin: 0 0 10px 0;
       }
+
       &__price {
         max-width: 100px;
+
         &__text {
           font-size: 12px;
         }
+
         &__value {
           font-size: 24px;
         }
@@ -79,6 +88,7 @@
         justify-content: space-between;
         align-items: center;
         gap: 24px;
+
         .btn-div {
           flex-grow: 1;
         }
@@ -119,17 +129,21 @@
     .shop-now {
       width: 380px;
       padding: 24px;
+
       &__title {
         display: none;
       }
+
       &__price {
         &__text {
           font-size: 14px;
         }
+
         &__value {
           font-size: 32px;
         }
       }
+
       &__button {
         margin-top: 28px;
       }
@@ -151,6 +165,7 @@
   .short-description {
     background-color: #1b1b1b;
     padding: 16px;
+
     &__container {
       &__text {
         &__description {
@@ -182,9 +197,11 @@
   }
   .game-img-des-container {
     grid-template-columns: repeat(4, 1fr);
+
     .short-description {
       grid-column: span 3 / span 3;
     }
+
     .shop-now {
       grid-column-start: 4;
     }
@@ -193,6 +210,7 @@
 
 .game-img-des-container {
   display: grid;
+
   .short-description {
     border-radius: 8px;
     max-width: 998px;
@@ -205,6 +223,7 @@
       gap: 16px;
       overflow: hidden;
       position: relative;
+
       &__img {
         // width: 342px;
         // height: 160px;
@@ -226,6 +245,7 @@
           height: 167.48538px;
         }
       }
+
       &__text {
         &__title {
           margin-top: 8px;
@@ -239,6 +259,7 @@
           display: block;
           overflow: hidden;
         }
+
         &__description {
           color: rgba(#fff, 0.7);
           max-width: 598px;
@@ -254,14 +275,17 @@
     // max-width: 354.817px;
     margin: auto;
     height: 100%;
+
     &__price {
       display: flex;
       flex-direction: column;
       gap: 8px;
+
       &__text {
         color: rgb(#fff, 0.7);
         font-weight: bold;
       }
+
       &__value {
         color: #c9ff58;
         font-weight: bold;
@@ -356,9 +380,11 @@
   color: rgba(#fff, 0.8);
   border-radius: 12px;
   width: 100%;
+
   div {
     width: 100%;
   }
+
   &-title {
     font-size: 20px;
     font-weight: bold;
@@ -384,6 +410,7 @@
     font-weight: bold;
     margin-bottom: 20px;
   }
+
   &__min-max {
     color: rgba(#fff, 0.7);
     line-height: 20px;
@@ -396,4 +423,73 @@
 .bb_img {
   width: 100%;
   max-width: 400px;
+}
+
+.deals {
+  display: flex;
+  padding: 8px 16px;
+  color: #fff;
+  background-color: #1b1b1b;
+  border-radius: 8px;
+  gap: 22px;
+
+  &:hover {
+    background-color: #242424;
+
+    .deals-shop-now-button {
+      color: #121212;
+      border: 1px solid #C9FF58;
+      background: #C9FF58;
+
+    }
+
+    svg {
+      path {
+        fill: #121212;
+      }
+    }
+  }
+
+  &-content {
+    display: flex;
+    flex-direction: column;
+    margin-top: auto;
+    margin-bottom: auto;
+    gap: 16px;
+
+    &-name {
+      color: #fff;
+      font-weight: bold;
+      font-size: 16px;
+    }
+
+    &-etc {
+      font-size: 14px;
+      font-weight: normal;
+      color: #fff;
+      opacity: 0.8;
+    }
+  }
+}
+
+.store-logo-container {
+  width: 123px;
+  height: 72px;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.deals-shop-now-button {
+  cursor: pointer;
+  border-radius: 24px;
+  border: 1px solid #C9FF58;
+  padding: 10.5px 14px;
+  background-color: transparent;
+  color: #C9FF58;
+  height: 100%;
+  margin-top: auto;
+  margin-bottom: auto;
 }

@@ -1,142 +1,181 @@
 <div class="game-img-des-container">
-  <div class="short-description">
-    <div class="short-description__container">
-      <div class="short-description__container__img">
-        @if (game?.imgUrl) {
-        <img [ngSrc]="game.imgUrl" alt="{{ game?.name }}" fill />
+    <div class="short-description">
+        <div class="short-description__container">
+            <div class="short-description__container__img">
+                @if (game?.imgUrl) {
+                    <img [ngSrc]="game.imgUrl" alt="{{ game?.name }}" fill/>
+                }
+            </div>
+            <div class="short-description__container__text">
+                <h1 class="short-description__container__text__title">
+                    {{ game?.name }}
+                </h1>
+                <p class="short-description__container__text__description">
+                    {{ game?.shortDescription }}
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="shop-now">
+        @if (game?.about?.aboutTheGame !== '' || gallery !== undefined &&
+        gallery?.length) {
+            <h2 class="shop-now__title">{{ game?.name }}</h2>
         }
-      </div>
-      <div class="short-description__container__text">
-        <h1 class="short-description__container__text__title">
-          {{ game?.name }}
-        </h1>
-        <p class="short-description__container__text__description">
-          {{ game?.shortDescription }}
-        </p>
-      </div>
+        <div class="shop-flex">
+            <div class="shop-now__price">
+                <p class="shop-now__price__text">Official Stories:</p>
+                <p class="shop-now__price__value">
+                    {{ offers?.currentPrice.split(" ")[0] }}
+                </p>
+                <p class="shop-now__price__text">Current Price</p>
+            </div>
+            <div class="btn-div">
+                <a
+                        href="{{ offers?.redirectUrl }}"
+                        target="_blank"
+                        style="cursor: pointer; text-decoration: none"
+                >
+                    <button class="shop-now__button shop-now__button__text">
+                        Shop Now
+                    </button>
+                </a>
+            </div>
+        </div>
     </div>
-  </div>
-  <div class="shop-now">
-    @if (game?.about?.aboutTheGame !== '' || gallery !== undefined &&
-    gallery?.length) {
-    <h2 class="shop-now__title">{{ game?.name }}</h2>
-    }
-    <div class="shop-flex">
-      <div class="shop-now__price">
-        <p class="shop-now__price__text">Official Stories:</p>
-        <p class="shop-now__price__value">
-          {{ offers?.currentPrice.split(" ")[0] }}
-        </p>
-        <p class="shop-now__price__text">Current Price</p>
-      </div>
-      <div class="btn-div">
-        <a
-          href="{{ offers?.redirectUrl }}"
-          target="_blank"
-          style="cursor: pointer; text-decoration: none"
-        >
-          <button class="shop-now__button shop-now__button__text">
-            Shop Now
-          </button>
-        </a>
-      </div>
-    </div>
-  </div>
 </div>
-
-@if (game?.about?.aboutTheGame !== '' || gallery !== undefined &&
-gallery?.length) {
-<h3 class="about-title">About {{ game?.name }}</h3>
-}
 
 <div class="main-container">
-  <div class="box left">
-    @if (gallery !== undefined && gallery.length) {
-    <!-- Main display carousel -->
-    <div class="main-carousel">
-      <ngx-slick-carousel
-        class="main"
-        #slickModal="slick-carousel"
-        [config]="mainSlideConfig"
-      >
-        <div ngxSlickItem *ngFor="let slide of gallery" class="main-slide">
-          <!-- Check if the slide is an image or a video -->
-          <ng-container *ngIf="!slide.isMovie">
-            <img [ngSrc]="slide.fullUrl" alt="slide" width="998" height="558" />
-          </ng-container>
-          <ng-container *ngIf="slide.isMovie">
-            <video muted controls width="100%" height="100%">
-              <source [src]="slide.fullUrl" type="video/webm" />
-              Your browser does not support the video tag.
-            </video>
-          </ng-container>
+    <div class="box left">
+        <h3 class="about-title" style="margin-bottom: 12px">Deals {{ game?.name }}</h3>
+        @for (deal of deals; track deal) {
+            <a
+                    href="{{ deal?.redirectUrl }}"
+                    target="_blank"
+                    class="deals"
+                    style="cursor: pointer; text-decoration: none; margin-bottom: 12px; display: flex; width: 100%; justify-content: space-between">
+                <div style="display: flex; gap: 16px;">
+                    @if (deal.storeLogoUrl) {
+                        <div class="store-logo-container">
+                            <img src="{{deal.storeLogoUrl }}" alt="">
+                        </div>
+                    } @else {
+                        <div class="store-logo-container">
+                            <img style="max-width: 100%" src="assets/{{deal.storeTitle}}.png" alt="">
+                        </div>
+                    }
+                    <div class="deals-content">
+                        <div class="deals-content-name">
+                            {{ deal.name }}
+                        </div>
+                        <div class="deals-content-etc">
+                            {{ deal.updateDate | timeAgo }}
+                        </div>
+                    </div>
+
+
+                </div>
+                    <button class="deals-shop-now-button">
+                        Shop Now
+                        <span style="font-size: 18px"> {{deal.currentPrice}} </span>
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2.42236 6.55363e-06H9.17783C9.3829 -0.000840781 9.58035 0.080508 9.72523 0.226266C9.87014 0.37117 9.95149 0.56776 9.95149 0.772825V7.47059C9.95149 7.67566 9.8693 7.87226 9.72439 8.01715C9.57948 8.1629 9.3829 8.24425 9.17783 8.24425C8.75073 8.24425 8.40501 7.89766 8.40501 7.47059V2.69137L1.32002 9.77375C1.01836 10.0754 0.52857 10.0754 0.226883 9.77375C-0.0756278 9.47209 -0.0756278 8.9823 0.226883 8.68061L7.3635 1.544L2.42245 1.54315C1.99535 1.54315 1.64963 1.1974 1.64963 0.77033C1.65132 0.344102 1.99698 6.55363e-06 2.42236 6.55363e-06Z" fill="#C9FF58"/>
+                        </svg>
+                    </button>
+            </a>
+        }
+
+
+        @if (game?.about?.aboutTheGame !== '' || gallery !== undefined &&
+        gallery?.length) {
+            <h3 class="about-title">About {{ game?.name }}</h3>
+        }
+        @if (gallery !== undefined && gallery.length) {
+            <!-- Main display carousel -->
+            <div class="main-carousel">
+                <ngx-slick-carousel
+                        class="main"
+                        #slickModal="slick-carousel"
+                        [config]="mainSlideConfig"
+                >
+                    <div ngxSlickItem *ngFor="let slide of gallery" class="main-slide">
+                        <!-- Check if the slide is an image or a video -->
+                        <ng-container *ngIf="!slide.isMovie">
+                            <img [ngSrc]="slide.fullUrl" alt="slide" width="998" height="558"/>
+                        </ng-container>
+                        <ng-container *ngIf="slide.isMovie">
+                            <video muted controls width="100%" height="100%">
+                                <source [src]="slide.fullUrl" type="video/webm"/>
+                                Your browser does not support the video tag.
+                            </video>
+                        </ng-container>
+                    </div>
+                </ngx-slick-carousel>
+            </div>
+            <!-- Thumbnails carousel -->
+            <div class="thumbnail-carousel">
+                <ngx-slick-carousel
+                        class="thumbs"
+                        #slickModal="slick-carousel"
+                        [config]="thumbnailSlideConfig"
+                >
+                    <div
+                            ngxSlickItem
+                            *ngFor="let slide of gallery; let i = index"
+                            class="thumbnail-slide"
+                    >
+                        <img
+                                *ngIf="!slide.isMovie"
+                                [ngSrc]="slide.thumbUrl"
+                                alt="slide thumbnail"
+                                (click)="slickModal.slickGoTo(i)"
+                                width="190"
+                                height="107"
+                        />
+                        <video
+                                *ngIf="slide.isMovie"
+                                controls
+                                muted
+                                width="100%"
+                                height="100%"
+                                (click)="slickModal.slickGoTo(i)"
+                        >
+                            <source [src]="slide.fullUrl" type="video/webm"/>
+                            Your browser does not support the video tag.
+                        </video>
+                    </div>
+                </ngx-slick-carousel>
+            </div>
+        }
+        @if (game?.about?.aboutTheGame !== '') {
+            <div class="">
+                <div class="about">
+                    <div [innerHTML]="sanitizedAboutTheGame"></div>
+                </div>
+            </div>
+        }
+    </div>
+    @if (game?.about?.systemRequirements[0]?.recommended ||
+    game?.about?.systemRequirements[0]?.minimum) {
+
+        <div class="box system-requirements right1">
+            <p class="system-requirements__title">System Requirements</p>
+            <div
+                    class="system-requirements__min-max"
+                    [innerHTML]="game?.about?.systemRequirements[0]?.recommended"
+            ></div>
+            <div
+                    class="system-requirements__min-max"
+                    [innerHTML]="game?.about?.systemRequirements[0]?.minimum"
+            ></div>
         </div>
-      </ngx-slick-carousel>
-    </div>
-    <!-- Thumbnails carousel -->
-    <div class="thumbnail-carousel">
-      <ngx-slick-carousel
-        class="thumbs"
-        #slickModal="slick-carousel"
-        [config]="thumbnailSlideConfig"
-      >
-        <div
-          ngxSlickItem
-          *ngFor="let slide of gallery; let i = index"
-          class="thumbnail-slide"
-        >
-          <img
-            *ngIf="!slide.isMovie"
-            [ngSrc]="slide.thumbUrl"
-            alt="slide thumbnail"
-            (click)="slickModal.slickGoTo(i)"
-            width="190"
-            height="107"
-          />
-          <video
-            *ngIf="slide.isMovie"
-            controls
-            muted
-            width="100%"
-            height="100%"
-            (click)="slickModal.slickGoTo(i)"
-          >
-            <source [src]="slide.fullUrl" type="video/webm" />
-            Your browser does not support the video tag.
-          </video>
-        </div>
-      </ngx-slick-carousel>
-    </div>
-    } @if (game?.about?.aboutTheGame !== '') {
-    <div class="">
-      <div class="about">
-        <div [innerHTML]="sanitizedAboutTheGame"></div>
-      </div>
-    </div>
     }
-  </div>
-  @if (game?.about?.systemRequirements[0]?.recommended ||
-  game?.about?.systemRequirements[0]?.minimum) {
 
-  <div class="box system-requirements right1">
-    <p class="system-requirements__title">System Requirements</p>
-    <div
-      class="system-requirements__min-max"
-      [innerHTML]="game?.about?.systemRequirements[0]?.recommended"
-    ></div>
-    <div
-      class="system-requirements__min-max"
-      [innerHTML]="game?.about?.systemRequirements[0]?.minimum"
-    ></div>
-  </div>
-  }
-
-  <div class="box right2">
-    <app-game-detail-card
-      [gameId]="gameId"
-      [gameName]="game?.name"
-    ></app-game-detail-card>
-  </div>
+    <div class="box right2">
+        <app-game-detail-card
+                [gameId]="gameId"
+                [gameName]="game?.name"
+        ></app-game-detail-card>
+    </div>
 
 </div>
-    <app-similar-games [games]="similarGames"></app-similar-games>
+<app-similar-games [games]="similarGames"></app-similar-games>

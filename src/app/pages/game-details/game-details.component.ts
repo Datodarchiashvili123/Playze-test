@@ -1,4 +1,4 @@
-import {Component, inject, Inject, OnDestroy, OnInit,} from "@angular/core";
+import {Component, inject, OnDestroy, OnInit,} from "@angular/core";
 import {GameDetailsService} from "./game-details.service";
 import {ActivatedRoute} from "@angular/router";
 import {Subscription} from "rxjs";
@@ -8,6 +8,7 @@ import {NgForOf, NgIf, NgOptimizedImage,} from "@angular/common";
 import {GameDetailCardComponent} from "../../shared/game-detail-card/game-detail-card.component";
 import {SimilarGamesComponent} from "../../shared/blocks/similar-games/similar-games.component";
 import {SeoService} from "../../services/seo.service";
+import {TimeAgoPipe} from "../../directives/time-ago.pipe";
 
 @Component({
     selector: "app-game-details",
@@ -19,6 +20,7 @@ import {SeoService} from "../../services/seo.service";
         NgOptimizedImage,
         GameDetailCardComponent,
         SimilarGamesComponent,
+        TimeAgoPipe,
     ],
     templateUrl: "./game-details.component.html",
     styleUrls: ["./game-details.component.scss"],
@@ -128,6 +130,7 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
     gallery: any;
     sanitizedAboutTheGame: any;
     offers: any;
+    deals: any[] | undefined;
     similarGames: any;
     private routeSub: Subscription | undefined;
 
@@ -144,7 +147,7 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit() {
-    this.routeSub = this.route.params.subscribe((params) => {
+        this.routeSub = this.route.params.subscribe((params) => {
             this.gameId = params["id"];
             this.loadGameDetail(this.gameId);
             this.loadGalleryDetail(this.gameId);
@@ -183,6 +186,8 @@ export class GameDetailsComponent implements OnInit, OnDestroy {
         this.gameDetailsService.getGameOffers(gameId).subscribe({
             next: (res: any) => {
                 this.offers = res.deals[0];
+                this.deals = res.deals;
+                console.log(this.deals, ' deals');
             },
         });
     }
