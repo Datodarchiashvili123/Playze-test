@@ -1,0 +1,203 @@
+.card {
+  border-radius: 12px;
+  display: flex;
+  margin: auto auto 20px auto;
+  position: relative;
+  max-width: 1000px;
+  max-height: 100%;
+  background-color: #1b1b1b;
+  box-sizing: border-box !important;
+
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    flex-grow: 1;
+  }
+
+  &__price {
+    padding-top: 7px;
+
+    .price-container {
+      text-align: right;
+    }
+  }
+
+  &__info {
+    margin-left: 16px;
+  }
+
+  &__img {
+    border-radius: 8px;
+    height: 100%;
+    display: flex;
+  }
+}
+
+.skeleton-image {
+  border-radius: 8px;
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+.skeleton-title {
+  height: 20px;
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 16px;
+}
+
+.skeleton-text {
+  height: 14px;
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.skeleton-price {
+  height: 24px;
+  width: 80px;
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+  margin-left: auto;
+}
+
+.price-label {
+  width: 100px;
+  margin-left: auto;
+}
+
+.platform-icons {
+  display: flex;
+  gap: 10px;
+}
+
+.skeleton-icon {
+  width: 16px;
+  height: 16px;
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 2px;
+}
+
+.skeleton-button {
+  margin-top: 32px;
+  height: 41px;
+  width: 120px;
+  background: linear-gradient(90deg, #2a2a2a 25%, #3a3a3a 50%, #2a2a2a 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 24px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+@media screen and (max-width: 768px) and (min-width: 669px) {
+  .card {
+    &__info {
+      .skeleton-title,
+      .skeleton-text {
+        width: 400px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 668px) and (min-width: 0px) {
+  .card {
+    &__info {
+      .skeleton-title,
+      .skeleton-text {
+        width: 190px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .card {
+    position: relative;
+    padding: 7px;
+
+    &__info {
+      .skeleton-title {
+        margin: 0 0 4px 0;
+      }
+      .skeleton-text {
+        height: 12px;
+      }
+      .rel-date {
+        margin: 0;
+      }
+      .genres {
+        margin: 0 0 6px 0;
+      }
+    }
+
+    &__price {
+      position: absolute;
+      bottom: 4px;
+      right: 4px;
+      align-self: flex-end;
+      padding: 0 5px 5px 0;
+
+      .skeleton-button,
+      .price-label {
+        display: none;
+      }
+
+      .skeleton-price {
+        height: 18px;
+      }
+    }
+
+    .skeleton-image {
+      width: 140px;
+      height: 75.5px;
+    }
+  }
+}
+
+@media screen and (min-width: 769px) {
+  .card {
+    padding: 18px 40px 18px 18px;
+
+    &__info {
+      margin-top: 8px;
+
+      .skeleton-title {
+        margin-bottom: 16px;
+      }
+
+      .skeleton-text {
+        height: 14px;
+        margin-bottom: 8px;
+      }
+    }
+
+    &__price {
+      .skeleton-price {
+        height: 24px;
+      }
+    }
+
+    .skeleton-image {
+      width: 280px;
+      height: 131px;
+    }
+  }
+}
