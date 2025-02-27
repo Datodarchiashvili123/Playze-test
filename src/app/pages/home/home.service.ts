@@ -34,4 +34,10 @@ export class HomeService {
             catchError((error: Error) => throwError(() => error))
         );
     }
+    getNewsCards(gameId: any) {
+        return this.http.get(`${environment.apiUrl}/announcement/announcementcards`).pipe(
+            map((res: any) => res),
+            catchError((error: Error) => throwError(() => error))
+        );
+    }
 }
