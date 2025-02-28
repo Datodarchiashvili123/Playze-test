@@ -6,6 +6,7 @@ import {DealsCardsComponent} from "../../shared/blocks/deals-cards/deals-cards.c
 import {HomeService} from "./home.service";
 import {RouterLink} from "@angular/router";
 import {Meta, Title} from "@angular/platform-browser";
+import {NewsCardComponent} from "../../shared/news-card/news-card.component";
 
 @Component({
     selector: 'app-home',
@@ -14,7 +15,8 @@ import {Meta, Title} from "@angular/platform-browser";
         SlickCarouselModule,
         ItemSliderComponent,
         DealsCardsComponent,
-        RouterLink
+        RouterLink,
+        NewsCardComponent
     ],
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
@@ -26,10 +28,11 @@ export class HomeComponent implements OnInit {
     sliderData: any;
     newDeals = [];
     bestDeals = [];
-    newDealsFirstPart=[];
+    newDealsFirstPart = [];
     newDealsSecondPart = [];
-    bestDealsFirstPart=[];
+    bestDealsFirstPart = [];
     bestDealsSecondPart = [];
+    newsCards = [];
 
     constructor(
         private homeService: HomeService,
@@ -61,15 +64,19 @@ export class HomeComponent implements OnInit {
 
         this.homeService.getDealCards(1).subscribe((x: any) => {
             this.newDeals = x.dealCards;
-             this.newDealsFirstPart = this.newDeals.slice(0, 5);  // Items from index 0 to 3
-             this.newDealsSecondPart = this.newDeals.slice(4, 9); // Items from index 4 to 8
+            this.newDealsFirstPart = this.newDeals.slice(0, 5);  // Items from index 0 to 3
+            this.newDealsSecondPart = this.newDeals.slice(5, 10); // Items from index 4 to 8
         });
 
         this.homeService.getDealCards(2).subscribe((x: any) => {
             this.bestDeals = x.dealCards;
             this.bestDealsFirstPart = this.bestDeals.slice(0, 5);
-            this.bestDealsSecondPart = this.bestDeals.slice(4, 9);
+            this.bestDealsSecondPart = this.bestDeals.slice(5, 10);
         });
+        this.homeService.getNewsCards().subscribe((x: any) => {
+            this.newsCards = x.announcementCards
+            console.log(this.newsCards, 'news cards');
+        })
     }
 
     updateMetaTags(keywords = '') {
