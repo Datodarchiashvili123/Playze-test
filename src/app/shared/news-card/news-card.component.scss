@@ -1,0 +1,133 @@
+.news-card__title{
+  margin-top: 24px;
+  margin-bottom: 16px;
+
+  h3 {
+    color: #FFF;
+    font-family: Jura, sans-serif;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    margin: unset;
+
+  }
+}
+
+//.news-card {
+//  display: flex;
+//  background-color: #1B1B1B;
+//  overflow: hidden;
+//  flex: 1 1 calc(50% - 16px);
+//  width: calc(100% - 16px);
+//  border-radius: 14px;
+//  column-gap: 14px;
+//}
+
+.related-news-container {
+  height: 120px;
+  background-color: #1b1b1b;
+  display: flex;
+  gap: 10px;
+  border-radius: 8px;
+  width: calc(50% - 8px);
+  cursor: pointer;
+  &:hover {
+  background-color: #242424;
+  }
+  .related-news-img {
+    img {
+      width: 210px;
+      height: 100%;
+      border-radius: 8px 0 0 8px;
+    }
+  }
+
+  .related-news-text-cont {
+    margin-top: 11px;
+
+    .related-news-text1 {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-bottom: 14px;
+
+      p {
+        font-size: 12px;
+        font-weight: 500;
+        font-family: Jura, sans-serif;
+        line-height: normal;
+        color: #ffffff;
+        opacity: 0.8;
+      }
+
+      button {
+        background-color: rgba(255, 0, 0, 0.2);
+        color: #ffffff;
+        font-weight: 500;
+        font-size: 10px;
+        font-family: Jura, sans-serif;
+        border: 2px solid rgba(255, 0, 0, 1);
+        border-radius: 20px;
+        padding: 6px 12px;
+        width: 47px;
+        height: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .card-icons {
+        display: flex;
+        gap: 10px;
+
+        .windows-img {
+          width: 16px;
+          height: 16px;
+        }
+
+        .playstation-img {
+          width: 18px;
+          height: 16px;
+        }
+      }
+    }
+
+    h3 {
+      color: #ffffff;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: Jura, sans-serif;
+      line-height: normal;
+      margin-bottom: 8px;
+    }
+
+    p {
+      color: #ffffff;
+      opacity: 0.6;
+      font-size: 10px;
+      font-weight: 700;
+      font-family: Jura, sans-serif;
+      line-height: normal;
+    }
+  }
+}
+
+.multi-line-fixed-height {
+  line-height: 20px; /* Set line height */
+  height: 40px; /* Fixed height (line-height * number of lines) */
+  display: -webkit-box; /* Use flexbox for clamping */
+  -webkit-box-orient: vertical; /* Set box orientation to vertical */
+  -webkit-line-clamp: 2; /* Number of lines to show */
+  overflow: hidden; /* Hide overflowing text */
+  text-overflow: ellipsis; /* Add ellipsis */
+}
+
+.presets {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 24px;
+  margin-top: 24px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}

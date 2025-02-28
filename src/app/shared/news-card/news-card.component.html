@@ -1,0 +1,45 @@
+<div class="news-card__title">
+    <h3 class="deals__title">{{ title }}</h3>
+</div>
+
+<!--<div class="" style="display: flex; column-gap: 16px; row-gap:18px; flex-wrap: wrap;">-->
+<!--    @for (newsCard of newsCards; track newsCard) {-->
+<!--        <div class="news-card" routerLink="{{newsCard.urlName}}">-->
+<!--            <img src="{{newsCard.imageUrl}}" alt="newsCard" style="width: 210px; height: 120px">-->
+<!--            <div class="">{{newsCard.headline}}</div>-->
+<!--        </div>-->
+<!--    }-->
+<!--</div>-->
+
+
+<div class="" style="width: 100%; display: flex; gap: 16px; flex-wrap: wrap; justify-content: space-between">
+    @for (newsCard of newsCards; track newsCard) {
+        <div class="related-news-container" routerLink="news/{{newsCard.urlName}}">
+            <div class="related-news-img">
+                <img src="{{newsCard.imageUrl}}" alt="news"/>
+            </div>
+            <div class="related-news-text-cont">
+                <div class="related-news-text1">
+                    <p>Added : {{newsCard.publishDate}}</p>
+                    <button
+                            [ngStyle]="{ 'background-color': getBorderColorWithOpacity(newsCard.typeColor,0.7),
+                        'border': '2px solid ' + newsCard.typeColor}">{{ newsCard.type }}
+                    </button>
+<!--                    <div class="card-icons">-->
+<!--                        <img src="/img/fa_windows.svg" class="windows-img" alt="windows"/>-->
+<!--                        <img-->
+<!--                                src="/img/fa-brands_playstation.svg"-->
+<!--                                class="playstation-img"-->
+<!--                                alt="playstation"-->
+<!--                        />-->
+<!--                    </div>-->
+                </div>
+                <h3>{{newsCard.headline}}</h3>
+                <p>
+                    {{newsCard.primaryKeyword}}
+                </p>
+            </div>
+        </div>
+    }
+</div>
+    
