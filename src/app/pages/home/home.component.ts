@@ -81,6 +81,7 @@ export class HomeComponent implements OnInit {
 
     updateMetaTags(keywords = '') {
         const description = `Find the best game deals on top titles with huge discounts! Explore daily offers and save big on the latest video games for all platforms. Don't miss out!`;
+        const imageUrl = `${window.location.origin}/assets/img.png`;
 
         this.removeExistingMetaTags();
 
@@ -89,7 +90,12 @@ export class HomeComponent implements OnInit {
             {
                 name: 'keywords',
                 content: `${keywords}, popular games, video game deals, new game releases, game discounts, best game deals, cheap video games, top-rated games, gaming offers, latest game discounts, game sales, PC games, console games, Xbox deals, PlayStation deals, Steam deals, game bundles, playze.io`
-            }
+            },
+            { property: 'og:title', content: 'Game Deals - Best Discounts and Offers on Top Games' },
+            { property: 'og:description', content: description },
+            { property: 'og:image', content: imageUrl },
+            { property: 'og:url', content: 'https://playze.io' },
+            { property: 'og:type', content: 'website' }
         ]);
     }
 
