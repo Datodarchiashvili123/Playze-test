@@ -16,12 +16,12 @@ export const routes: Routes = [
         path: 'games/:id',
         loadComponent: () =>
             import('./pages/game-details/game-details.component').then((m) => m.GameDetailsComponent),
+            data: {prerender: false}
     },
     {
         path: 'news',
         loadComponent: () =>
             import('./pages/news/news.component').then((m) => m.NewsComponent),
-        data: {prerender: false}
     },
     {
         path: 'news/:id',
