@@ -24,6 +24,8 @@ export function app(): express.Express {
             const newHost = host.replace('www.', '');
             return res.redirect(301, `https://${newHost}${req.url}`);
         }
+
+
         next();
     });
 
