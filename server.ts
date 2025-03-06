@@ -17,11 +17,6 @@ export function app(): express.Express {
     server.set('view engine', 'html');
     server.set('views', browserDistFolder);
 
-    // Serve static files first
-    server.get('*.*', express.static(browserDistFolder, {
-        maxAge: '0'
-    }));
-
     // Add redirection middleware for www.playze.io -> playze.io
     server.use((req, res, next) => {
         const host = req.headers.host || '';
@@ -31,6 +26,12 @@ export function app(): express.Express {
         }
         next();
     });
+
+    // Serve static files first
+    server.get('*.*', express.static(browserDistFolder, {
+        maxAge: '0'
+    }));
+
 
     // Serve the Google verification HTML file
     server.get('/google7ff99fd29e799a03.html', (req, res, next) => {
