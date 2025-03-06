@@ -22,6 +22,16 @@ export function app(): express.Express {
         maxAge: '0'
     }));
 
+    // Add redirection middleware for www.playze.io -> playze.io
+    server.use((req, res, next) => {
+        const host = req.headers.host || '';
+        if (host.startsWith('www.')) {
+            const newHost = host.replace('www.', '');
+            return res.redirect(301, `https://${newHost}${req.url}`);
+        }
+        next();
+    });
+
     // Serve the Google verification HTML file
     server.get('/google7ff99fd29e799a03.html', (req, res, next) => {
         res.sendFile(join(browserDistFolder, 'google7ff99fd29e799a03.html'), (err) => {
