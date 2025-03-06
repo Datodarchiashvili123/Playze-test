@@ -14,6 +14,10 @@ export function app(): express.Express {
 
     const commonEngine = new CommonEngine();
 
+
+    server.set('timeout', 300000); // Timeout in milliseconds (300,000 ms = 5 minutes)
+
+
     server.set('view engine', 'html');
     server.set('views', browserDistFolder);
 
