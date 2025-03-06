@@ -16,7 +16,6 @@ export const routes: Routes = [
         path: 'games/:id',
         loadComponent: () =>
             import('./pages/game-details/game-details.component').then((m) => m.GameDetailsComponent),
-            data: {prerender: false}
     },
     {
         path: 'news',
@@ -27,12 +26,10 @@ export const routes: Routes = [
         path: 'news/:id',
         loadComponent: () =>
             import('./pages/news-details/news-details.component').then((m) => m.NewsDetailsComponent),
-        data: {prerender: false}
     },
     {
         path: '**',
         redirectTo: '', // HomeComponent-ისკენ გადამისამართება
-        data: {prerender: false}
 
     }
 
