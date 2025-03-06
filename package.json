@@ -6,7 +6,7 @@
     "postbuild": "node generate-sitemap.js",
     "start": "ng serve",
     "build": "ng build --configuration production",
-    "watch": "ng build --watch --configuration development",
+    "watch": "ng build --configuration development",
     "test": "ng test ",
     "serve:ssr:play": "node dist/play/server/server.mjs",
     "build:ssr": "ng build Playze_group && ng run Playze_group:server",
