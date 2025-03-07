@@ -72,7 +72,8 @@ export function app(): express.Express {
                 providers: [
                     { provide: APP_BASE_HREF, useValue: '/' },
                     { provide: REQUEST, useValue: req }
-                ]
+                ],
+
             })
             .then((html) => {
                 res.status(200)
@@ -93,9 +94,11 @@ function run(): void {
 
     // Start up the Node server
     const server = app();
-    server.listen(port, () => {
+    const httpServer =  server.listen(port, () => {
         console.log(`Node Express server listening on http://localhost:${port}`);
     });
+    httpServer.timeout = 1000 * 60 * 60;
 }
+
 
 run();
