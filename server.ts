@@ -98,6 +98,7 @@ function run(): void {
         console.log(`Node Express server listening on http://localhost:${port}`);
     });
     httpServer.timeout = 1000 * 60 * 60;
+    httpServer.keepAliveTimeout = 1000 * 60 * 60;
 }
 
 
