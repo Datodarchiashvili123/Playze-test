@@ -18,6 +18,7 @@ export const appConfig: ApplicationConfig = {
         provideClientHydration( // `defer: true` აღარ არის საჭირო
             withHttpTransferCacheOptions({
                 includePostRequests: false,
+
             })
         ),
     ]
