@@ -46,10 +46,10 @@ export class FiltersComponent implements OnInit {
             console.log(res);
             this.genres = res.genres;
         });
-        this.filtersService.getDevelopers().subscribe((res: any) => {
-            console.log(res);
-            this.developers = res.developers;
-        });
+        // this.filtersService.getDevelopers().subscribe((res: any) => {
+        //     console.log(res);
+        //     this.developers = res.developers;
+        // });
         this.filtersService.getPublishers().subscribe((res: any) => {
             console.log(res);
             this.publishers = res.publishers;

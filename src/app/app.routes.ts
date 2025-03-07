@@ -11,12 +11,12 @@ export const routes: Routes = [
         path: 'games',
         loadComponent: () =>
             import('./pages/games/games.component').then((m) => m.GamesComponent),
+        data:{prerender: false}
     },
     {
         path: 'games/:id',
         loadComponent: () =>
             import('./pages/game-details/game-details.component').then((m) => m.GameDetailsComponent),
-        data: { prerender: false }
 
     },
     {
@@ -28,7 +28,6 @@ export const routes: Routes = [
         path: 'news/:id',
         loadComponent: () =>
             import('./pages/news-details/news-details.component').then((m) => m.NewsDetailsComponent),
-        data: { prerender: false }
     },
     {
         path: '**',
