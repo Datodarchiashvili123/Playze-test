@@ -8,7 +8,7 @@ import { isPlatformBrowser, isPlatformServer } from '@angular/common';
 export class SeoService {
   constructor(
       @Inject(DOCUMENT) private document: Document,
-      @Inject(PLATFORM_ID) private platformId: object
+      @Inject(PLATFORM_ID) private platformId: object,
   ) {}
 
   setCanonicalURL(url: string): void {
@@ -34,5 +34,12 @@ export class SeoService {
         this.document.head.appendChild(link);
       }
     }
+  }
+
+  addSchemaMarkup(schema: any) {
+    const script = this.document.createElement('script');
+    script.type = 'application/ld+json';
+    script.text = JSON.stringify(schema);
+    this.document.head.appendChild(script);
   }
 }

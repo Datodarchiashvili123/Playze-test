@@ -7,6 +7,7 @@ import {HomeService} from "./home.service";
 import {RouterLink} from "@angular/router";
 import {Meta, Title} from "@angular/platform-browser";
 import {NewsCardComponent} from "../../shared/news-card/news-card.component";
+import {SeoService} from "../../services/seo.service";
 
 @Component({
     selector: 'app-home',
@@ -38,14 +39,13 @@ export class HomeComponent implements OnInit {
         private homeService: HomeService,
         private titleService: Title,
         private metaService: Meta,
+        private seoService: SeoService,
     ) {
     }
 
     ngOnInit() {
         this.titleService.setTitle('Game Deals - Best Discount and Offers on Top Games');
-
         this.updateMetaTags();
-
         this.homeService.getTopGameCards().subscribe((x: any) => {
             this.gamesData = x.popularGames;
             this.sliderData = x.popularGames.map((game: any) => ({
@@ -61,13 +61,11 @@ export class HomeComponent implements OnInit {
 
             this.updateMetaTags(keywords);
         });
-
         this.homeService.getDealCards(1).subscribe((x: any) => {
             this.newDeals = x.dealCards;
             this.newDealsFirstPart = this.newDeals.slice(0, 5);  // Items from index 0 to 3
             this.newDealsSecondPart = this.newDeals.slice(5, 10); // Items from index 4 to 8
         });
-
         this.homeService.getDealCards(2).subscribe((x: any) => {
             this.bestDeals = x.dealCards;
             this.bestDealsFirstPart = this.bestDeals.slice(0, 5);
@@ -76,10 +74,21 @@ export class HomeComponent implements OnInit {
         this.homeService.getNewsCards().subscribe((x: any) => {
             this.newsCards = x.announcementCards
             console.log(this.newsCards, 'news cards');
-        })
+        });
+        const schemaMarkup = {
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Playze Game Deals",
+            "url": "https://playze.io",
+            "description": "Find the best game deals and discounts for PC, PlayStation, Xbox, and more."
+        };
+
+        this.seoService.addSchemaMarkup(schemaMarkup);
+
     }
 
     updateMetaTags(keywords = '') {
+        this.titleService.setTitle('Game Deals - Best Discount and Offers on Top Games');
         const description = `Find the best game deals on top titles with huge discounts! Explore daily offers and save big on the latest video games for all platforms. Don't miss out!`;
         const imageUrl = `${window.location.origin}/assets/img.png`;
 
@@ -109,6 +118,37 @@ export class HomeComponent implements OnInit {
         if (keywordsTag) {
             this.metaService.removeTag('name="keywords"');
         }
+
+        const breadcrumbScript = document.createElement('script');
+        breadcrumbScript.type = 'application/ld+json';
+        breadcrumbScript.text = JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            "itemListElement": [
+                {
+                    "@type": "ListItem",
+                    "position": 1,
+                    "name": "Home",
+                    "item": "https://playze.io"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 2,
+                    "name": "Games",
+                    "item": "https://playze.io/games"
+                },
+                {
+                    "@type": "ListItem",
+                    "position": 3,
+                    "name": "News",
+                    "item": "https://playze.io/news"
+                },
+            ]
+        });
+
+        document.head.appendChild(breadcrumbScript);
     }
+
+
 
 }
