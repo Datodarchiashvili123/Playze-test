@@ -1,6 +1,6 @@
 {
   "name": "play",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "ng": "ng",
     "postbuild": "node generate-sitemap.js",
