@@ -26,6 +26,7 @@
   .card {
     position: relative;
     padding: 7px;
+
     &__info {
       h2,
       p,
@@ -36,19 +37,24 @@
         display: block;
         overflow: hidden;
       }
+
       h2 {
         margin: 0 0 4px 0;
       }
+
       p {
         font-size: 12px;
       }
+
       .rel-date {
         margin: 0;
       }
+
       .genres {
         margin: 0 0 6px 0;
       }
     }
+
     &__price {
       position: absolute;
       bottom: 4px;
@@ -56,10 +62,12 @@
       align-self: flex-end;
       padding: 0 5px 5px 0;
       color: #c9ff58;
+
       &__button,
       span {
         display: none;
       }
+
       p {
         font-size: 18px;
       }
@@ -95,6 +103,7 @@
   margin-block-start: 32px;
   margin-block-end: 22px;
 }
+
 .page__description {
   color: rgba(#fff, 0.7);
   font-family: Jura, sans-serif;
@@ -103,6 +112,7 @@
   font-weight: 400;
   line-height: normal;
 }
+
 * {
   margin: 0;
   padding: 0;
@@ -112,6 +122,7 @@
 body {
   background-color: #121212;
 }
+
 .results-text {
   color: #ffffff;
   opacity: 0.8;
@@ -356,4 +367,12 @@ body {
   margin-top: 24px;
   overflow-x: auto;
   padding-bottom: 10px;
+}
+
+.news-cards {
+  width: 100%;
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  justify-content: space-between
 }
