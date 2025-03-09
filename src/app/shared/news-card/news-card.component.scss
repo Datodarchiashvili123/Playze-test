@@ -25,7 +25,7 @@
 //}
 
 .related-news-container {
-  height: 120px;
+  height: 92.5px;
   background-color: #1b1b1b;
   display: flex;
   gap: 10px;
@@ -37,7 +37,7 @@
   }
   .related-news-img {
     img {
-      width: 210px;
+      width: 250px;
       height: 100%;
       border-radius: 8px 0 0 8px;
     }
@@ -50,7 +50,7 @@
       display: flex;
       gap: 14px;
       align-items: center;
-      margin-bottom: 14px;
+      margin-bottom: 10px;
 
       p {
         font-size: 12px;

@@ -79,8 +79,8 @@
 @media screen and (min-width: 769px) {
   .card-image {
     img {
-      width: 280px;
-      height: 160px;
+      width: 300px;
+      height: 111px;
     }
   }
 }
@@ -341,10 +341,10 @@ body {
 
 .multi-line-fixed-height {
   line-height: 20px; /* Set line height */
-  height: 40px; /* Fixed height (line-height * number of lines) */
+  height: 20px; /* Fixed height (line-height * number of lines) */
   display: -webkit-box; /* Use flexbox for clamping */
   -webkit-box-orient: vertical; /* Set box orientation to vertical */
-  -webkit-line-clamp: 2; /* Number of lines to show */
+  -webkit-line-clamp: 1; /* Number of lines to show */
   overflow: hidden; /* Hide overflowing text */
   text-overflow: ellipsis; /* Add ellipsis */
 }

@@ -1,12 +1,13 @@
 import {Component, Input} from '@angular/core';
 import {RouterLink} from "@angular/router";
-import {NgStyle} from "@angular/common";
+import {NgOptimizedImage, NgStyle} from "@angular/common";
 
 @Component({
     selector: 'app-news-card',
     imports: [
         RouterLink,
-        NgStyle
+        NgStyle,
+        NgOptimizedImage
     ],
     templateUrl: './news-card.component.html',
     styleUrl: './news-card.component.scss'

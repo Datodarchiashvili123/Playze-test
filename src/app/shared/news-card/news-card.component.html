@@ -16,7 +16,7 @@
     @for (newsCard of newsCards; track newsCard) {
         <div class="related-news-container" routerLink="news/{{newsCard.urlName}}">
             <div class="related-news-img">
-                <img src="{{newsCard.imageUrl}}" alt="news"/>
+                <img ngSrc="{{newsCard.imageUrl}}" alt="news" width="300" height="111"/>
             </div>
             <div class="related-news-text-cont">
                 <div class="related-news-text1">
