@@ -41,6 +41,7 @@ export class HomeComponent implements OnInit {
         private metaService: Meta,
         private seoService: SeoService,
     ) {
+        console.log("component");
     }
 
     ngOnInit() {
