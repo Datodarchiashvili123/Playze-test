@@ -1,5 +1,5 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
+import {Component, Inject, OnInit, PLATFORM_ID, ViewEncapsulation} from '@angular/core';
+import {isPlatformBrowser, NgOptimizedImage} from "@angular/common";
 import {SlickCarouselModule} from "ngx-slick-carousel";
 import {ItemSliderComponent} from "../../shared/item-slider/item-slider.component";
 import {DealsCardsComponent} from "../../shared/blocks/deals-cards/deals-cards.component";
@@ -40,6 +40,7 @@ export class HomeComponent implements OnInit {
         private titleService: Title,
         private metaService: Meta,
         private seoService: SeoService,
+        @Inject(PLATFORM_ID) private platformId: Object
     ) {
         console.log("component");
     }
@@ -91,23 +92,23 @@ export class HomeComponent implements OnInit {
     updateMetaTags(keywords = '') {
         this.titleService.setTitle('Game Deals - Best Discount and Offers on Top Games');
         const description = `Find the best game deals on top titles with huge discounts! Explore daily offers and save big on the latest video games for all platforms. Don't miss out!`;
-        const imageUrl = `${window.location.origin}/assets/img.png`;
+        if (!isPlatformBrowser(this.platformId)) {
+            this.removeExistingMetaTags();
 
-        this.removeExistingMetaTags();
-
-        this.metaService.addTags([
-            {name: 'description', content: description},
-            {
-                name: 'keywords',
-                content: `${keywords}, popular games, video game deals, new game releases, game discounts, best game deals, cheap video games, top-rated games, gaming offers, latest game discounts, game sales, PC games, console games, Xbox deals, PlayStation deals, Steam deals, game bundles, playze.io`
-            },
-            { property: 'og:title', content: 'Game Deals - Best Discounts and Offers on Top Games' },
-            { property: 'og:description', content: description },
-            { property: 'og:image', content: imageUrl },
-            { property: 'og:url', content: 'https://playze.io' },
-            { property: 'og:type', content: 'website' }
-        ]);
+            this.metaService.addTags([
+                {name: 'description', content: description},
+                {
+                    name: 'keywords',
+                    content: `${keywords}, popular games, video game deals, new game releases, game discounts, best game deals, cheap video games, top-rated games, gaming offers, latest game discounts, game sales, PC games, console games, Xbox deals, PlayStation deals, Steam deals, game bundles, playze.io`
+                },
+                {property: 'og:title', content: 'Game Deals - Best Discounts and Offers on Top Games'},
+                {property: 'og:description', content: description},
+                {property: 'og:url', content: 'https://playze.io'},
+                {property: 'og:type', content: 'website'}
+            ]);
+        }
     }
+
 
     removeExistingMetaTags() {
         const descriptionTag = this.metaService.getTag('name="description"');
