@@ -43,7 +43,7 @@ export class NewsComponent implements OnInit {
   currentPage = 1;
   news: any;
   currentFilters: any = {};
-  orderBy: string = "Popularity";
+  orderBy: string = "AZ";
   searchValue: string = "";
   isLoading = false;
 
@@ -61,7 +61,6 @@ export class NewsComponent implements OnInit {
     this.loadNews(
       this.currentPage,
       this.currentFilters,
-      this.orderBy,
       this.searchValue
     );
 
@@ -76,11 +75,11 @@ export class NewsComponent implements OnInit {
     }
   }
 
-  loadNews(page: number, filters: any = {}, orderBy?: string, name?: string) {
+  loadNews(page: number, filters: any = {}, name?: string) {
     // this.newsService.cancelRequest();
     this.isLoading = true;
     this.newsService
-      .getGames(page, 10, filters, orderBy, name)
+      .getGames(page, 10, filters, name)
       .subscribe((data: any) => {
         this.news = data.results;
         this.totalPages = data.totalPages;
@@ -111,7 +110,6 @@ export class NewsComponent implements OnInit {
     this.loadNews(
       this.currentPage,
       this.currentFilters,
-      this.orderBy,
       this.searchValue
     ); // Fetch the data for the new page
   }
@@ -119,7 +117,7 @@ export class NewsComponent implements OnInit {
   handleFilterChange(filters: any) {
     this.currentFilters = filters;
     this.currentPage = 1; // Update the current filters
-    this.loadNews(1, this.currentFilters, this.orderBy, this.searchValue);
+    this.loadNews(1, this.currentFilters,  this.searchValue);
   }
 
   onSortChange(event: any) {
@@ -127,14 +125,13 @@ export class NewsComponent implements OnInit {
     this.loadNews(
       this.currentPage,
       this.currentFilters,
-      this.orderBy,
       this.searchValue
     );
   }
 
   handleSearchChange(search: string) {
     this.searchValue = search;
-    this.loadNews(1, this.currentFilters, this.orderBy, this.searchValue);
+    this.loadNews(1, this.currentFilters, this.searchValue);
   }
 
   getBorderColorWithOpacity(color: string, opacity: number): string {

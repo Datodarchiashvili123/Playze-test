@@ -23,7 +23,7 @@ export class PostsService {
    * @param name Game name to search
    * @returns Observable with the response
    */
-  getGames(pageNumber?: number, pageSize?: number, filters?: any, orderBy?: any, name?: string) {
+  getGames(pageNumber?: number, pageSize?: number, filters?: any,  name?: string) {
     // Build API URL dynamically
     let apiUrl = `${environment.apiUrl}/announcement/announcements?`;
     if (name) apiUrl += `Name=${name}`;
@@ -41,7 +41,7 @@ export class PostsService {
         }
       });
     }
-    if (orderBy) apiUrl += `&OrderBy=${orderBy}`;
+    // if (orderBy) apiUrl += `&OrderBy=${orderBy}`;
 
     return this.http.get(apiUrl).pipe(
         map((res: any) => res),
