@@ -227,7 +227,7 @@ body {
         line-height: normal;
         font-style: normal;
         font-weight: 700;
-        margin-bottom: 16px;
+        margin-bottom: 8px;
       }
 
       p {
@@ -236,7 +236,7 @@ body {
         font-size: 14px;
         font-weight: 500;
         line-height: normal;
-        margin: 0px;
+        margin: 0 0 4px 0;
       }
     }
 
@@ -361,6 +361,10 @@ body {
   text-overflow: ellipsis; /* Add ellipsis */
 }
 
+.multi-line-fixed-height h2{
+  margin-bottom: 4px !important;
+}
+
 .presets {
   display: flex;
   gap: 16px;
@@ -370,3 +374,8 @@ body {
   padding-bottom: 10px;
 }
 
+//@media screen and (max-width: 768px) {
+//  .sidebar {
+//    display: none;
+//  }
+//}

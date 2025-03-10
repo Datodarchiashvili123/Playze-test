@@ -139,3 +139,41 @@
   flex-wrap: wrap;
   justify-content: space-between
 }
+
+@media (max-width: 880px) {
+  .related-news-container {
+    flex-wrap: nowrap;
+    flex: 1 1 100%;
+  }
+
+}
+
+
+@media (max-width: 768px) {
+  .related-news-img img{
+    width: 187.5px !important;
+    height: 69px !important;
+  }
+  .related-news-text1{
+    margin-bottom: 2px !important;
+  }
+  .related-news-container{
+    height: 69px;
+  }
+  .text-elipsis{
+    line-height: 12px; /* Set line height */
+    height: 12px; /* Fixed height (line-height * number of lines) */
+    display: -webkit-box; /* Use flexbox for clamping */
+    -webkit-box-orient: vertical; /* Set box orientation to vertical */
+    -webkit-line-clamp: 1; /* Number of lines to show */
+    overflow: hidden; /* Hide overflowing text */
+    text-overflow: ellipsis; /* Add ellipsis */
+  }
+  h3{
+    margin-bottom: 4px !important;
+  }
+ .related-news-text-cont{
+   margin-top: 8px !important;
+   padding-right: 4px !important;
+ }
+}
